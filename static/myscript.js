@@ -61,16 +61,20 @@ function change2(x1) {
         table4.appendChild(table5);
         //the listener trigger functions before the DOM is set so the call doc.byId return undefined
         }
-        $("input").ready(function () {
-            $("#table5.id").change(TRr(this)); console.log("in JQuery" + this.value); 
-            }
-        )
-
-    }
-$("input").ready(function () {
-    $("#table5.id").change(TRr(this)); console.log("in JQuery" + this.value); 
-    }
-    )
+        
+    for(let k = 1; k <= y; k++){ 
+        console.log("in for2 n°" + k);
+        $("input").change(
+            function () {
+                let picpic 
+                picpic = 'pic' + k;
+                let paramTRr;
+                paramTRr = document.getElementById(picpic);
+                $("#table5.id").change(TRr(paramTRr)); console.log("in JQuery1" + k); 
+                }
+            )
+        }   
+    }        
 function event1(y){ console.log(y)
     for(i = 1; i <= y; i++){
         console.log("in for n°2 "+i+" times, go for pic" + i);
@@ -106,18 +110,17 @@ function repeat(x){
     return text2, console.log("out of repeat2!")
     }
 
-function TRr(TR) {console.log(TR);
-    let TR1 = document.getElementById(TR);
-        if (TR1) {
-            console.log("TR1:" + TR1);
+function TRr(x) {
+    console.log("function TRr received:" + x);
+        if (x) {
             let Tm = document.getElementById("TM").value;
             console.log("Tm:" + Tm);
-            let TRrx = TR1 - Tm
+            let TRrx = x.value - Tm
             console.log("TRrx:" + TRrx);
-            document.getElementById("TRr"+TR).innerHTML = TRrx
+            document.getElementById("TRr" + x).innerHTML = TRrx
             return console.log("TRrx is" + TRrx)
             }
-        else return;
+        else return console.log("Can't get element by id with:" + x);;
     }
 
 function Kret(TR) { console.log("in Kret")
