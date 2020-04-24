@@ -1,3 +1,5 @@
+//just a try to make a new branch on git
+
 //fonction repeat: return two strings of html, one to insert in the form
 //the other to insert in the table (this one will cal other maths function
 //to calculate results every time the form change)
@@ -40,7 +42,6 @@ function change2(x1) {
     //add the new <td>
     
     for(i = 1; i <= y; i++){ console.log("in for"); 
-        console.log("input n°" + i);
         let table1 = document.getElementById('tbody');
         let table2 = document.createElement("tr");
         table1.appendChild(table2);
@@ -59,7 +60,17 @@ function change2(x1) {
         let id5 = "pic" + i;
         //table5.addEventListener("input", TRr(id5))
         table4.appendChild(table5);
-        //the listener trigger functions before the DOM is set so the call doc.byId return undefined
+
+        //add the TRr row
+        let trrow = document.createElement("th");
+        trrow.scope = "row";
+        trrow.innerHTML = i;
+        table2.appendChild(trrow);
+        let trrow2 = document.createElement('td');
+        trrow2.id = "TRr" + i; 
+        trrow2.placeholder = "TRr" + i;
+        trrow2.classname = "form-control";
+        table2.appendChild(trrow2);
         }
         
     for(let k = 1; k <= y; k++){ 
@@ -73,7 +84,8 @@ function change2(x1) {
                 $("#table5.id").change(TRr(paramTRr)); console.log("in JQuery1" + k); 
                 }
             )
-        }   
+        }
+   
     }        
 function event1(y){ console.log(y)
     for(i = 1; i <= y; i++){
