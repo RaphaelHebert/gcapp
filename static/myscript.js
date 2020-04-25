@@ -243,15 +243,25 @@ function S(pic) { console.log("in S()")
 function HEPT(k) { console.log("in HEPT()")
     let H1;
     H1 = document.getElementById("Lg").value;
-    console.log("H1 is "+H1)
-    H1 = parseInt(H1)
-    console.log("H1 is "+H1)
-    let H2;
-    H2 = document.getElementById("N"+k).textContent;
-    H2 = parseFloat(H2)
-    console.log("H2 is "+H2)
-    H = H1 / H2
-    console.log("Hept = " + H +"from k="+k)
-    document.getElementById("HEPT"+k).innerHTML = H.toFixed(2)
-    return console.log("return HEPT function")
+    if (H1) {
+        console.log("H1 is "+H1)
+        H1 = parseInt(H1)
+        console.log("H1 is "+H1)
+        let H2;
+        H2 = document.getElementById("N"+k).textContent;
+        if (H1) {
+            H2 = parseFloat(H2)
+            console.log("H2 is "+H2)
+            H = H1 / H2
+            console.log("Hept = " + H +"from k="+k)
+            document.getElementById("HEPT"+k).innerHTML = H.toFixed(2)
+            return console.log("return HEPT function")
+            }
+        else { 
+            document.getElementById("HEPT"+k).innerHTML = "N!"
+        }
+        }
+    else {
+        document.getElementById("HEPT"+k).innerHTML = "Lg!"
+        }
     }
