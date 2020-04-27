@@ -1,0 +1,17 @@
+span.h1 {
+    text-align: left;
+    font-family: fantasy;
+    color: rgb(27, 104, 129);
+}
+
+body {
+    background-image: url("labfree.jpeg");
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+}
+
+label {
+    color: black;
+    text-align: left;
+    text-shadow: lightgreen;
+}
