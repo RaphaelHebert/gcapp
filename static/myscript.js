@@ -4,41 +4,19 @@
 //the other to insert in the table (this one will cal other maths function
 //to calculate results every time the form change)
 
-function addrows(n1) { 
-    for (i = 0; i < n1; i++) {
-        var pics = document.getElementById("try")
-        var new1 = document.createElement("input");
-        new1.text = "Pic n°" + i
-        pics.add(new1)
-        console.log("one more", i)
-        }
-    }
-
-function change3(){ console.log("in change");
-    var nb = document.getElementById('pics');
-    var n0 = nb.options[nb.selectedIndex].value;
-    var n1 = parseInt(n0)
-    console.log("nb is:", n1)
-    repeat(n1);
-    //document.getElementById('pics')appendChild
-    return console.log("out chance");
-    }
-
 //pass the number of pics you need as x1 from an input tag
 function change2(x1) {
-    console.log(x1);
     var y = x1.value
-    console.log(y);
     var i;
+
     //delete the previously called <td>
     var tbody1 = document.getElementById("tbody");
     while (tbody1.hasChildNodes()) {
         tbody1.removeChild(tbody1.childNodes[0])  
         }
-    console.log("out while");
-
     
-    for(i = 1; i <= y; i++){ console.log("in for"); 
+    //Add the rows <td>
+    for(i = 1; i <= y; i++){ console.log("adding row"+i+" to the results table..."); 
         let table1 = document.getElementById('tbody');
         let table2 = document.createElement("tr");
         table1.appendChild(table2);
@@ -52,7 +30,7 @@ function change2(x1) {
         table4.classname = "form-control";
         table2.appendChild(table4);
         let table5 = document.createElement('input');  //create a <input> node
-        table5.type = "number";
+        table5.type = "float";
         table5.id = "pic" + i;
         //let id5 = "pic" + i;
         //table5.addEventListener("input", TRr(id5))
@@ -68,7 +46,7 @@ function change2(x1) {
         alpha2.classname = "form-control";
         alpha1.appendChild(alpha2);
         let alpha3 = document.createElement('input');  //create a <input> node
-        alpha3.type = "number";
+        alpha3.type = "float";
         alpha3.id = "Alpha" + i;
         alpha2.appendChild(alpha3);
 
@@ -122,13 +100,22 @@ function change2(x1) {
         HEPT2.classname = "form-control";
         HEPT2.innerHTML = "HEPT" + i;
         HEPT1.appendChild(HEPT2);
-        }
+        
 
+        //add the Resolution row
+        let reso1 = document.createElement("th");
+        reso1.scope = "row";
+        table2.appendChild(reso1);
+        let reso2 = document.createElement('td');
+        reso2.id = "reso" + i; 
+        reso2.classname = "form-control";
+        reso2.innerHTML = "reso" + i;
+        reso1.appendChild(reso2);
+        }
         
     
     for (let k = 1; k <= y; k++) {
         $('#TRr'+k).ready(function () {
-            console.log("change from TR" + k);
             $("#pic" + k).change(function () {
                 let picpic;
                 picpic = 'pic' + k;
@@ -140,68 +127,42 @@ function change2(x1) {
         //call N() when N change
         $('#N'+k).ready(function () {
             $("#Alpha" + k).change(function () {
-                $("#N"+ k).change(N(k), HEPT(k));
-                console.log("Alpha"+k +"changed!")
+                $("#N"+ k).change(N(k), HEPT(k), resolution(k))
                 });    
             })
         
         $('#S'+k).ready(function () {
             $('#pic'+ k).change(function () {
                 $("#S"+ k).change(S(k));
-                console.log("Alpha"+k +"changed!")
                 });    
             })
         $('#N'+k).ready(function () {
             $('#Lg').change(function () {
-                HEPT(k);
+                HEPT(k); resolution(k);
                 console.log("HEPT called from Lg change");
                 });    
             })
             })
-        }
-    }
-function event1(y){ console.log(y)
-    for(i = 1; i <= y; i++){
-        console.log("in for n°2 "+i+" times, go for pic" + i);
-        console.log(document.getElementById("pic" + i).value);
-        document.getElementById("pic" + i).addEventListener("change",TRr("pic" + i));
+        $('#Alpha'+k).ready(function () {
+            $('#pic'+k).change(resolution(k))
+            })   
+
+        $("#pic" + k).change(function () {
+            let picpic;
+            picpic = 'pic' + k;
+            let paramTRr;
+            paramTRr = document.getElementById(picpic);
+            $("#pic".id).change(TRr(paramTRr, k),Kret(picpic, k), N(k));
+            })   
         }
     }
 
-function repeat(x){ 
-    console.log("In repeat2!");
-    text2 =''; 
-    for (i = 0; i < x; i++) {
-        //create variables for the id tags and to call functions
-        var picnb = i + 1
-        var picid = "pic" + picnb
-        var alphaid = "alpha" + picnb
-        var TRrid = "TRr" + picnb
-        var Kretid = "Kret" + picnb
-        var Nid = "N" + picnb
-        var Sid = "S" + picnb
-        var Heptid = "Hept" + picnb
-        text2 += 
-        `<tr>            <th scope=\\"row\\">${picnb}</th> \
-            <td><input type=\\"number\\" class=\\"form-control\\" id= ${picid} \\" placeholder=\ "Pic n°${picnb}" \ onChange = "TRr(\'' ${picid} '\'), Kret(${Kretid}), S(${picnb})" \> \
-            <td><input type=\\"number\\" class=\\"form-control\\" id= ${alphaid} \\" placeholder=\ "Pic width" \ onChange = "N(${picnb}), HEPT(${Nid}, 'Lg')" \> \
-        </td> <td id=\ "${TRrid}" \"> XXXX</td> \
-        <td id=\ "${Kretid}" \"> XXXX</td> \
-        <td id=\ "${Nid}" \" > XXXX</td> \
-        <td id=\ "${Sid}" \"> XXXX</td> \
-        <td id=\ "${Heptid}" \ "> XXXX</td> </tr>`;
-        }
-    document.getElementById('tbody').innerHTML=text2;
-    return text2, console.log("out of repeat2!")
-    }
-
-function TRr(x, y) {
+function TRr(x, y) { console.log("in TRr()")
     if (x) {
         let Tm = document.getElementById("TM").value;
-        console.log("Tm:" + Tm+" y:"+y);
         let TRrx = x.value - Tm
         document.getElementById("TRr" + y).innerHTML = TRrx;
-        return console.log("TRrx is" + TRrx)
+        return console.log("TRrx is" + TRrx +" , TRrx return")
         }
     else return console.log("Can't get element by id with:" + x);;
 }
@@ -209,34 +170,30 @@ function TRr(x, y) {
 function Kret(TR, k) { console.log("in Kret")
     TR1 = document.getElementById(TR).value;
     Tm = document.getElementById("TM").value;
-    console.log("Tm: " + Tm +"TR1: " + TR1);
     Kret01 = (TR1 - Tm)/Tm;
     document.getElementById("Kret"+k).innerHTML = Kret01;
-    return console.log("Kret is" + Kret01);
+    return console.log("Kret() return");
     }
 
 function N(pic) { 
     console.log("in N()");
     Alpha = document.getElementById("Alpha"+pic).value;
     TR1 = document.getElementById("pic"+pic).value;
-    console.log("Tm: " + Tm +"TR1: "+TR1);
     N1 = (5.54 *((TR1 / Alpha)*(TR1 / Alpha)));
     document.getElementById("N"+pic).innerHTML = N1.toFixed(2);
-    return console.log("N1 is "+N1)
+    return console.log("N1() return")
     }
 
-function S(pic) { console.log("in S()")
+function S(pic) { console.log("in S()");
     if (document.getElementById("Kret"+(pic - 1)).textContent)
         {
-        console.log("if")
         Kret1 = document.getElementById("Kret"+(pic - 1)).textContent;
         Kret1 = parseInt(Kret1)
         Kret2 = document.getElementById("Kret"+pic).textContent;
         Kret2 = parseInt(Kret2)
-        console.log("Kret1: " + Kret1 +"Kret2: "+Kret2);
         Sel = Kret1 / Kret2
         document.getElementById("S"+(pic - 1)).innerHTML = Sel.toFixed(2)
-        return console.log("Sel: "+Sel.toFixed(2))
+        return console.log("Sel: "+Sel.toFixed(2) + " , S() return")
         }
     }
 
@@ -265,3 +222,28 @@ function HEPT(k) { console.log("in HEPT()")
         document.getElementById("HEPT"+k).innerHTML = "Lg!"
         }
     }
+function resolution(x) {
+    console.log("in resolution()");
+    if (document.getElementById("Alpha" + (x - 1)).value){
+        let NA1;
+        NR1 = document.getElementById("Alpha" + (x - 1)).value;        
+        let NA2;
+        NR2 = document.getElementById("Alpha" + x ).value
+        console.log("NA2" + NA2);
+        let NK1;
+        NK1 = document.getElementById("pic" + (x - 1)).value;
+        let NK2;
+        NK2 = document.getElementById("pic" + x).value;
+        console.log("NK2 = " + NK2);
+        let res;
+        res=1.2 * ((NK2 - NK1)/(NA2 + NA1));
+        console.log("res = " + res);
+        document.getElementById('reso' + (x - 1)).innerHTML= reso;
+        return console.log("resolution() return");
+        }
+    return console.log("resolution() return: no NR1");
+
+
+    
+    
+}

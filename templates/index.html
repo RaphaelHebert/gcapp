@@ -17,42 +17,70 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
             <title>Chromatofast</title>
           </head>
-          <body>
-            <nav class="navbar navbar-light bg-light">
-              <span class="navbar-brand mb-0 h1">Chromatofast</span>
-            </nav>            
-                <div class="row">
-                    <div class="col-md-2">
-                      <label for="TM">Dead time</label>
-                      <input type="number" class="form-control" placeholder="Tm" id ="TM">
+          <body class='container-fluid'>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <a class="navbar-brand" href="#"><b class="title1">C</b>hromatofast</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Documentation
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Theorie</a>
+                      <a class="dropdown-item" href="#">references and links</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">credit</a>
                     </div>
-                    <div class="col-md-2">
-                      <label for="pics">Number of pics</label>
-                      <input type="number" id="pics" name="pics" onchange="change2(this)">
-                    </div>
-                    <div class="col-md-2">
-                      <label for="Flow">Flow rate</label>
-                      <input type="number" class="form-control" placeholder="Flow" id ="Débit">
-                    </div>
-                    <div class="col-md-2">
-                      <label for="Lg">Column length</label>
-                      <input type="number" class="form-control" placeholder="Lg-col" id ="Lg">
-                    </div>
+                  </li>
+                </ul>
+              </div> 
+            </nav> 
+            <br /><br />
+                      
+            <div class="row">
+                <div class="col-md-2">
+                  <label for="TM">Dead time (min)</label>
+                  <input type="float" class="form-control" placeholder="Tm" id ="TM">
                 </div>
+                <div class="col-md-2">
+                  <label for="pics">Number of pics</label>
+                  <input type="number" class="form-control" id="pics" name="pics" onchange="change2(this)">
+                </div>
+                <div class="col-md-2">
+                  <label for="Flow">Flow rate (ml/min)</label>
+                  <input type="float" class="form-control" placeholder="Flow" id ="Débit">
+                </div>
+                <div class="col-md-2">
+                  <label for="Lg">Column length (mm)</label>
+                  <input type="number" class="form-control" placeholder="Lg-col" id ="Lg">
+                </div>
+            </div>
            
-
-            <p> Your results:            </p>
+            <br />
+            <p> Enter the values of the retention time (Tr) et their width at mid-hight of the pics you want to analyse             </p>
             <table class="table table-striped table-dark">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">pic</th>
-                    <th scope="col">TR</th>
-                    <th scope="col">Alpha</th>
-                    <th scope="col">TRr</th>
-                    <th scope="col">K'</th>
-                    <th scope="col">N</th>
-                    <th scope="col">S</th>
-                    <th scope="col">HEPT</th>
+                    <th scope="col" style="color: rgb(252, 76, 76);">Pic n°</th>
+                    <th scope="col" style="color: rgb(252, 76, 76);">TR (mins)</th>
+                    <th scope="col" style="color: rgb(252, 76, 76);">Alpha (mm)</th>
+                    <th scope="col" style="color: rgb(252, 76, 76);">TRrv (mins)</th>
+                    <th scope="col"style="color: rgb(252, 76, 76);">K'</th>
+                    <th scope="col" style="color: rgb(252, 76, 76);">N</th>
+                    <th scope="col" style="color: rgb(252, 76, 76);">S</th>
+                    <th scope="col" style="color: rgb(252, 76, 76);">HEPT</th>
+                    <th scope="col" style="color: rgb(252, 76, 76);">Resolution</th>
                   </tr>
                 </thead>
                 <tbody id ="tbody">
