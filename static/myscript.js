@@ -136,15 +136,15 @@ function change2(x1) {
                 $("#S"+ k).change(S(k));
                 });    
             })
+        $('#Alpha'+k).ready(function () {
+            $('#pic'+k).change(resolution(k))
+            }) 
         $('#N'+k).ready(function () {
             $('#Lg').change(function () {
                 HEPT(k); resolution(k);
                 console.log("HEPT called from Lg change");
                 });    
             })
-            })
-        $('#Alpha'+k).ready(function () {
-            $('#pic'+k).change(resolution(k))
             })   
 
         $("#pic" + k).change(function () {
@@ -188,9 +188,9 @@ function S(pic) { console.log("in S()");
     if (document.getElementById("Kret"+(pic - 1)).textContent)
         {
         Kret1 = document.getElementById("Kret"+(pic - 1)).textContent;
-        Kret1 = parseInt(Kret1)
+        Kret1 = parseFloat(Kret1)
         Kret2 = document.getElementById("Kret"+pic).textContent;
-        Kret2 = parseInt(Kret2)
+        Kret2 = parseFloat(Kret2)
         Sel = Kret1 / Kret2
         document.getElementById("S"+(pic - 1)).innerHTML = Sel.toFixed(2)
         return console.log("Sel: "+Sel.toFixed(2) + " , S() return")
@@ -222,28 +222,28 @@ function HEPT(k) { console.log("in HEPT()")
         document.getElementById("HEPT"+k).innerHTML = "Lg!"
         }
     }
+    
 function resolution(x) {
     console.log("in resolution()");
-    if (document.getElementById("Alpha" + (x - 1)).value){
-        let NA1;
-        NR1 = document.getElementById("Alpha" + (x - 1)).value;        
-        let NA2;
-        NR2 = document.getElementById("Alpha" + x ).value
-        console.log("NA2" + NA2);
-        let NK1;
-        NK1 = document.getElementById("pic" + (x - 1)).value;
-        let NK2;
-        NK2 = document.getElementById("pic" + x).value;
-        console.log("NK2 = " + NK2);
-        let res;
-        res=1.2 * ((NK2 - NK1)/(NA2 + NA1));
-        console.log("res = " + res);
-        document.getElementById('reso' + (x - 1)).innerHTML= reso;
-        return console.log("resolution() return");
-        }
-    return console.log("resolution() return: no NR1");
-
-
-    
-    
+    let NA1;
+    NA1 = document.getElementById("Alpha" + (x - 1)).value;
+    console.log("NA1 = " + NA1);        
+    let NA2;
+    NA2 = document.getElementById("Alpha" + x).value;
+    console.log("NA2 = " + NA2);
+    let NK1;
+    NK1 = document.getElementById("pic" + (x - 1)).value;
+    console.log("NK1 = " + NK1);
+    let NK2;
+    NK2 = document.getElementById("pic" + x).value;
+    console.log("NK2 = " + NK2);
+    NA2 = parseFloat(NA2)
+    NA1 = parseFloat(NA1)
+    let res;
+    res=1.2 * ((NK2 - NK1)/(NA2 + NA1));
+    console.log(NK2 - NK1);
+    console.log(parseInt(NA2) + parseInt(NA1));
+    console.log("res = " + res);
+    document.getElementById('reso' + (x - 1)).innerHTML= res.toFixed(4);
+    return console.log("resolution() return");
 }
