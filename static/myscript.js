@@ -32,9 +32,36 @@ function change2(x1) {
         let table5 = document.createElement('input');  //create a <input> node
         table5.type = "float";
         table5.id = "pic" + i;
-        //let id5 = "pic" + i;
-        //table5.addEventListener("input", TRr(id5))
+        table5.size = 5;
         table4.appendChild(table5);
+
+        //add the C row
+        let C1 = document.createElement("th");
+        C1.scope = "row";
+        table2.appendChild(C1);
+        let C2 = document.createElement('td');
+        C2.id = "C1" + i; 
+        C2.classname = "form-control";
+        C1.appendChild(C2);
+        let C3 = document.createElement('input');  //create a <input> node
+        C3.type = "float";
+        C3.id = "C" + i;
+        C3.size = 6;
+        C2.appendChild(C3);
+
+        //add the h row
+        let h1 = document.createElement("th");
+        h1.scope = "row";
+        table2.appendChild(h1);
+        let h2 = document.createElement('td');
+        h2.id = "h" + i; 
+        h2.classname = "form-control";
+        h1.appendChild(h2);
+        let h3 = document.createElement('input');  //create a <input> node
+        h3.type = "number";
+        h3.id = "h" + i;
+        h3.size = 3;
+        h2.appendChild(h3);
 
         //add the Aplha row
         let alpha1 = document.createElement("th");
@@ -48,6 +75,7 @@ function change2(x1) {
         let alpha3 = document.createElement('input');  //create a <input> node
         alpha3.type = "float";
         alpha3.id = "Alpha" + i;
+        alpha3.size = 6;
         alpha2.appendChild(alpha3);
 
         //add the TRr row
@@ -70,6 +98,26 @@ function change2(x1) {
         Krow2.classname = "form-control";
         Krow2.innerHTML = "Kret" + i;
         Krow1.appendChild(Krow2);
+
+        //add the LOD row
+        let LOD1 = document.createElement("th");
+        LOD1.scope = "row";
+        table2.appendChild(LOD1);
+        let LOD2 = document.createElement('td');
+        LOD2.id = "LOD" + i; 
+        LOD2.classname = "form-control";
+        LOD2.innerHTML = "LOD" + i;
+        LOD1.appendChild(LOD2);
+
+        //add the LOQ row
+        let LOQ1 = document.createElement("th");
+        LOQ1.scope = "row";
+        table2.appendChild(LOQ1);
+        let LOQ2 = document.createElement('td');
+        LOQ2.id = "LOQ" + i; 
+        LOQ2.classname = "form-control";
+        LOQ2.innerHTML = "LOQ" + i;
+        LOQ1.appendChild(LOQ2);
 
         //add the N row
         let N1 = document.createElement("th");
@@ -123,6 +171,12 @@ function change2(x1) {
                 paramTRr = document.getElementById(picpic);
                 $("#pic".id).change(TRr(paramTRr, k),Kret(picpic, k), N(k));
                 })
+
+        $('#LOQ'+k).ready(function () {
+            $('#h' + k).change( function () {
+                $('#C' + k).change(limites(k))     
+                })
+            })    
 
         //call N() when N change
         $('#N'+k).ready(function () {
@@ -247,3 +301,20 @@ function resolution(x) {
     document.getElementById('reso' + (x - 1)).innerHTML= res.toFixed(4);
     return console.log("resolution() return");
 }
+
+function limites (k) {
+    console.log("in function limites()")
+    let higth1;
+    higth1 = document.getElementById("h" + k).value;
+    let noise1;
+    noise1 = document.getElementById("Noise").value;
+    let rate;
+    rate = higth1/noise1;
+    let Ck;
+    Ck = document.getElementById("C" + k).value;
+    let LOD0, LOQ0;
+    LOD0 = Ck / ( rate/3);
+    LOQ0 = Ck / (rate/10);
+    document.getElementById("LOD" + k).innerHTML = LOD0;
+    document.getElementById("LOQ" + k).innerHTML = LOQ0;
+    }
