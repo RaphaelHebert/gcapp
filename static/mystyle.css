@@ -20,3 +20,8 @@ label {
      color: red;
      text-align: center;
 }
+
+.terminology {
+    font-size: 80%;
+    font-style: italic;
+}

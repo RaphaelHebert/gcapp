@@ -36,13 +36,11 @@ function change2(x1) {
         table4.appendChild(table5);
 
         //add the C row
-        let C1 = document.createElement("th");
-        C1.scope = "row";
-        table2.appendChild(C1);
         let C2 = document.createElement('td');
+        C2.scope = "row";
         C2.id = "C1" + i; 
         C2.classname = "form-control";
-        C1.appendChild(C2);
+        table2.appendChild(C2);
         let C3 = document.createElement('input');  //create a <input> node
         C3.type = "float";
         C3.id = "C" + i;
@@ -50,13 +48,11 @@ function change2(x1) {
         C2.appendChild(C3);
 
         //add the h row
-        let h1 = document.createElement("th");
-        h1.scope = "row";
-        table2.appendChild(h1);
         let h2 = document.createElement('td');
-        h2.id = "h" + i; 
+        h2.scope = "row";
+        h2.id = "h0" + i; 
         h2.classname = "form-control";
-        h1.appendChild(h2);
+        table2.appendChild(h2);
         let h3 = document.createElement('input');  //create a <input> node
         h3.type = "number";
         h3.id = "h" + i;
@@ -64,14 +60,12 @@ function change2(x1) {
         h2.appendChild(h3);
 
         //add the Aplha row
-        let alpha1 = document.createElement("th");
-        alpha1.scope = "row";
-        table2.appendChild(alpha1);
         let alpha2 = document.createElement('td');
+        alpha2.scope = "row";
         alpha2.id = "alpha1" + i; 
         alpha2.placeholder = "alpha " + i;
         alpha2.classname = "form-control";
-        alpha1.appendChild(alpha2);
+        table2.appendChild(alpha2);
         let alpha3 = document.createElement('input');  //create a <input> node
         alpha3.type = "float";
         alpha3.id = "Alpha" + i;
@@ -79,86 +73,70 @@ function change2(x1) {
         alpha2.appendChild(alpha3);
 
         //add the TRr row
-        let trrow = document.createElement("th");
-        trrow.scope = "row";
-        table2.appendChild(trrow);
         let trrow2 = document.createElement('td');
+        trrow2.scope = "row";
         trrow2.id = "TRr" + i; 
         trrow2.placeholder = "TRr" + i;
         trrow2.classname = "form-control";
         trrow2.innerHTML = "XXXX";
-        trrow.appendChild(trrow2);
+        table2.appendChild(trrow2);
 
         //add the K' row
-        let Krow1 = document.createElement("th");
-        Krow1.scope = "row";
-        table2.appendChild(Krow1);
         let Krow2 = document.createElement('td');
+        Krow2.scope = "row";
         Krow2.id = "Kret" + i; 
+        Krow2.placeholder = "TRr" + i;
         Krow2.classname = "form-control";
         Krow2.innerHTML = "Kret" + i;
-        Krow1.appendChild(Krow2);
+        table2.appendChild(Krow2);
 
         //add the LOD row
-        let LOD1 = document.createElement("th");
-        LOD1.scope = "row";
-        table2.appendChild(LOD1);
         let LOD2 = document.createElement('td');
+        LOD2.scope = "row";
         LOD2.id = "LOD" + i; 
         LOD2.classname = "form-control";
         LOD2.innerHTML = "LOD" + i;
-        LOD1.appendChild(LOD2);
+        table2.appendChild(LOD2);
 
         //add the LOQ row
-        let LOQ1 = document.createElement("th");
-        LOQ1.scope = "row";
-        table2.appendChild(LOQ1);
         let LOQ2 = document.createElement('td');
+        LOQ2.scope = "row";
         LOQ2.id = "LOQ" + i; 
         LOQ2.classname = "form-control";
         LOQ2.innerHTML = "LOQ" + i;
-        LOQ1.appendChild(LOQ2);
-
-        //add the N row
-        let N1 = document.createElement("th");
-        N1.scope = "row";
-        table2.appendChild(N1);
-        let N2 = document.createElement('td');
-        N2.id = "N" + i; 
-        N2.classname = "form-control";
-        N2.innerHTML = "N" + i;
-        N1.appendChild(N2);
+        table2.appendChild(LOQ2);
 
         //add the s row
-        let S1 = document.createElement("th");
-        S1.scope = "row";
-        table2.appendChild(S1);
         let S2 = document.createElement('td');
+        S2.scope = "row";
         S2.id = "S" + i; 
         S2.classname = "form-control";
         S2.innerHTML = "S" + i;
-        S1.appendChild(S2);
-
-        //add the HEPT row
-        let HEPT1 = document.createElement("th");
-        HEPT1.scope = "row";
-        table2.appendChild(HEPT1);
-        let HEPT2 = document.createElement('td');
-        HEPT2.id = "HEPT" + i; 
-        HEPT2.classname = "form-control";
-        HEPT2.innerHTML = "HEPT" + i;
-        HEPT1.appendChild(HEPT2);
+        table2.appendChild(S2);
         
-
         //add the Resolution row
-        let reso1 = document.createElement("th");
-        reso1.scope = "row";
-        table2.appendChild(reso1);
         let reso2 = document.createElement('td');
+        reso2.scope = "row";
         reso2.id = "reso" + i; 
         reso2.classname = "form-control";
         reso2.innerHTML = "reso" + i;
-        reso1.appendChild(reso2);
+        table2.appendChild(reso2);
+
+        //add the N row
+        let N2 = document.createElement('td');
+        N2.scope = "row";
+        N2.id = "N" + i; 
+        N2.classname = "form-control";
+        N2.innerHTML = "N" + i;
+        table2.appendChild(N2);
+
+        //add the HEPT row
+        let HEPT2 = document.createElement('td');
+        HEPT2.scope = "row";
+        HEPT2.id = "HEPT" + i; 
+        HEPT2.classname = "form-control";
+        HEPT2.innerHTML = "HEPT" + i;
+        table2.appendChild(HEPT2);
         }
         
     
@@ -215,7 +193,7 @@ function TRr(x, y) { console.log("in TRr()")
     if (x) {
         let Tm = document.getElementById("TM").value;
         let TRrx = x.value - Tm
-        document.getElementById("TRr" + y).innerHTML = TRrx;
+        document.getElementById("TRr" + y).innerHTML = TRrx.toFixed(3);
         return console.log("TRrx is" + TRrx +" , TRrx return")
         }
     else return console.log("Can't get element by id with:" + x);;
@@ -223,9 +201,11 @@ function TRr(x, y) { console.log("in TRr()")
 
 function Kret(TR, k) { console.log("in Kret")
     TR1 = document.getElementById(TR).value;
+    console.log(TR1)
     Tm = document.getElementById("TM").value;
+    console.log(Tm)
     Kret01 = (TR1 - Tm)/Tm;
-    document.getElementById("Kret"+k).innerHTML = Kret01;
+    document.getElementById("Kret"+k).innerHTML = Kret01.toFixed(3);
     return console.log("Kret() return");
     }
 
@@ -245,7 +225,7 @@ function S(pic) { console.log("in S()");
         Kret1 = parseFloat(Kret1)
         Kret2 = document.getElementById("Kret"+pic).textContent;
         Kret2 = parseFloat(Kret2)
-        Sel = Kret1 / Kret2
+        Sel = Kret2 / Kret1
         document.getElementById("S"+(pic - 1)).innerHTML = Sel.toFixed(2)
         return console.log("Sel: "+Sel.toFixed(2) + " , S() return")
         }
@@ -265,7 +245,7 @@ function HEPT(k) { console.log("in HEPT()")
             console.log("H2 is "+H2)
             H = H1 / H2
             console.log("Hept = " + H +"from k="+k)
-            document.getElementById("HEPT"+k).innerHTML = H.toFixed(2)
+            document.getElementById("HEPT"+k).innerHTML = H.toFixed(4)
             return console.log("return HEPT function")
             }
         else { 
@@ -306,8 +286,10 @@ function limites (k) {
     console.log("in function limites()")
     let higth1;
     higth1 = document.getElementById("h" + k).value;
+    console.log("higth1 = " + higth1)
     let noise1;
     noise1 = document.getElementById("Noise").value;
+    console.log("noise1 = " + noise1)
     let rate;
     rate = higth1/noise1;
     let Ck;
@@ -315,6 +297,6 @@ function limites (k) {
     let LOD0, LOQ0;
     LOD0 = Ck / ( rate/3);
     LOQ0 = Ck / (rate/10);
-    document.getElementById("LOD" + k).innerHTML = LOD0;
-    document.getElementById("LOQ" + k).innerHTML = LOQ0;
+    document.getElementById("LOD" + k).innerHTML = LOD0.toFixed(4);
+    document.getElementById("LOQ" + k).innerHTML = LOQ0.toFixed(4);
     }
