@@ -16,130 +16,40 @@ function change2(x1) {
         }
     
     //Add the rows <td>
-    for(i = 1; i <= y; i++){ console.log("adding row"+i+" to the results table..."); 
+    var parameters = ["picnb", "pic", "C", "h", "Alpha"];
+    var results = ["TRr","Kret", "LOD","LOG","S","reso","N", "HEPT"];
+    for(i = 1; i <= y; i++){ console.log("adding row"+i+" to the results table...");
         let table1 = document.getElementById('tbody');
         let table2 = document.createElement("tr");
         table1.appendChild(table2);
-        let table3 = document.createElement("th");
-        table3.scope = "row";
-        table3.innerHTML = i;
-        table2.appendChild(table3);
-        let table4 = document.createElement('td');
-        table4.id = "pic2" + i; 
-        table4.placeholder = "pic" + i;
-        table4.classname = "form-control";
-        table2.appendChild(table4);
-        let table5 = document.createElement('input');  //create a <input> node
-        table5.type = "float";
-        table5.id = "pic" + i;
-        table5.size = 5;
-        table4.appendChild(table5);
+        //append the inputs for parameters
+        for(z0 = 0; z0 < parameters.length; z0++) {
+            let newtd = document.createElement("td");
+            newtd.scope = "row";
+            newtd.id = "th" + parameters[z0] + i;
+            table2.appendChild(newtd);
+            if (z0 == 0){
+                    newtd.innerHTML = i;
+                }
+            else {
+                let newinput = document.createElement('input');  //create a <input> node
+                newinput.type = "float";
+                newinput.id = parameters[z0] + i;
+                newinput.size = 6;
+                newtd.appendChild(newinput);
+                }
+            }
 
-        //add the C row
-        let C2 = document.createElement('td');
-        C2.scope = "row";
-        C2.id = "C1" + i; 
-        C2.classname = "form-control";
-        table2.appendChild(C2);
-        let C3 = document.createElement('input');  //create a <input> node
-        C3.type = "float";
-        C3.id = "C" + i;
-        C3.size = 6;
-        C2.appendChild(C3);
+        for(z1 = 0; z1 < results.length; z1++) {
+            let newtd2 = document.createElement("td");
+            newtd2.scope = "row";
+            newtd2.id = parameters[z1] + i;
+            newtd2.innerHTML = parameters[z1] + i;
+            table2.appendChild(newtd2);
+            
+            }
 
-        //add the h row
-        let h2 = document.createElement('td');
-        h2.scope = "row";
-        h2.id = "h0" + i; 
-        h2.classname = "form-control";
-        table2.appendChild(h2);
-        let h3 = document.createElement('input');  //create a <input> node
-        h3.type = "number";
-        h3.id = "h" + i;
-        h3.size = 3;
-        h2.appendChild(h3);
-
-        //add the Aplha row
-        let alpha2 = document.createElement('td');
-        alpha2.scope = "row";
-        alpha2.id = "alpha1" + i; 
-        alpha2.placeholder = "alpha " + i;
-        alpha2.classname = "form-control";
-        table2.appendChild(alpha2);
-        let alpha3 = document.createElement('input');  //create a <input> node
-        alpha3.type = "float";
-        alpha3.id = "Alpha" + i;
-        alpha3.size = 6;
-        alpha2.appendChild(alpha3);
-
-        //add the TRr row
-        let trrow2 = document.createElement('td');
-        trrow2.scope = "row";
-        trrow2.id = "TRr" + i; 
-        trrow2.placeholder = "TRr" + i;
-        trrow2.classname = "form-control";
-        trrow2.innerHTML = "XXXX";
-        table2.appendChild(trrow2);
-
-        //add the K' row
-        let Krow2 = document.createElement('td');
-        Krow2.scope = "row";
-        Krow2.id = "Kret" + i; 
-        Krow2.placeholder = "TRr" + i;
-        Krow2.classname = "form-control";
-        Krow2.innerHTML = "Kret" + i;
-        table2.appendChild(Krow2);
-
-        //add the LOD row
-        let LOD2 = document.createElement('td');
-        LOD2.scope = "row";
-        LOD2.id = "LOD" + i; 
-        LOD2.classname = "form-control";
-        LOD2.innerHTML = "LOD" + i;
-        table2.appendChild(LOD2);
-
-        //add the LOQ row
-        let LOQ2 = document.createElement('td');
-        LOQ2.scope = "row";
-        LOQ2.id = "LOQ" + i; 
-        LOQ2.classname = "form-control";
-        LOQ2.innerHTML = "LOQ" + i;
-        table2.appendChild(LOQ2);
-
-        //add the s row
-        let S2 = document.createElement('td');
-        S2.scope = "row";
-        S2.id = "S" + i; 
-        S2.classname = "form-control";
-        S2.innerHTML = "S" + i;
-        table2.appendChild(S2);
-        
-        //add the Resolution row
-        let reso2 = document.createElement('td');
-        reso2.scope = "row";
-        reso2.id = "reso" + i; 
-        reso2.classname = "form-control";
-        reso2.innerHTML = "reso" + i;
-        table2.appendChild(reso2);
-
-        //add the N row
-        let N2 = document.createElement('td');
-        N2.scope = "row";
-        N2.id = "N" + i; 
-        N2.classname = "form-control";
-        N2.innerHTML = "N" + i;
-        table2.appendChild(N2);
-
-        //add the HEPT row
-        let HEPT2 = document.createElement('td');
-        HEPT2.scope = "row";
-        HEPT2.id = "HEPT" + i; 
-        HEPT2.classname = "form-control";
-        HEPT2.innerHTML = "HEPT" + i;
-        table2.appendChild(HEPT2);
-        }
-        
-    
+    // add the action to elements, call functions
     for (let k = 1; k <= y; k++) {
         $('#TRr'+k).ready(function () {
             $("#pic" + k).change(function () {
@@ -300,3 +210,4 @@ function limites (k) {
     document.getElementById("LOD" + k).innerHTML = LOD0.toFixed(4);
     document.getElementById("LOQ" + k).innerHTML = LOQ0.toFixed(4);
     }
+}
