@@ -98,7 +98,7 @@ function change2(x1) {
             picpic = 'pic' + k;
             var paramTRr;
             paramTRr = document.getElementById(picpic);
-            $("#pic".id).change(TRr(paramTRr, k),Kret(picpic, k), N(k), Purnell(k));
+            $("#pic".id).change(TRr(paramTRr, k),Kret(picpic, k),S(k), N(k), Purnell(k));
             })   
         }
     }
@@ -118,7 +118,7 @@ $('#Noise').change(function (){
         }
     })
 
-function TRr(x, y) { console.log("in TRr()"+ x)
+function TRr(x, y) { console.log("in TRr()")
     if (x) {
         let Tm = document.getElementById("TM").value;
         let TRrx = x.value - Tm
@@ -149,19 +149,21 @@ function N(pic) {
     }
 
 function S(pic) { console.log("in S()");
-    if (document.getElementById("Kret"+(pic - 1)).textContent)
-        {
-        Kret1 = document.getElementById("Kret"+(pic - 1)).value;
+        try {
+        Kret1 = document.getElementById("Kret"+(pic - 1)).textContent;
         Kret1 = parseFloat(Kret1)
-        Kret2 = document.getElementById("Kret"+pic).value;
+        Kret2 = document.getElementById("Kret"+pic).textContent;
         Kret2 = parseFloat(Kret2)
         Sel = Kret2 / Kret1
         if (Sel < 1) {
             Sel = Kret1 / Kret2
-        }
+            }
         document.getElementById("S"+(pic - 1)).innerHTML = Sel.toFixed(2)
         return console.log("Sel: "+Sel.toFixed(2) + " , S() return")
         }
+        catch {
+            return;
+            }
     }
 
 function HEPT(k) { console.log("in HEPT()")
@@ -193,7 +195,12 @@ function HEPT(k) { console.log("in HEPT()")
 function resolution(x) {
     console.log("in resolution()");
     let NA1;
-    NA1 = document.getElementById("Alpha" + (x - 1)).value;
+    try {
+        NA1 = document.getElementById("Alpha" + (x - 1)).value;
+    }
+    catch {
+        return;
+    }
     let NA2;
     NA2 = document.getElementById("Alpha" + x).value;
     let NK1;
@@ -242,16 +249,21 @@ function limites (k) {
 
 function Purnell (k) {
     console.log("Purnell(selectivity, retention factor)" +(k +1))
-    let pur1 = document.getElementById("S" + (k - 1)).textContent;
-    pur1 = parseFloat(pur1)
-    console.log("pur1 is " + pur1)
-    let pur3 = document.getElementById("Kret" + k).textContent;
-    pur3 = parseFloat(pur3);
-    let pur4 = document.getElementById("Kret" + (k + 1) ).textContent;
-    pur4 = parseFloat(par4)
-    console.log("pur4 is " + pur4)  
-    let pur5 = (pur3 + pur4) / 2
-    console.log("pur5 is " + pur5)
-    let pur6 = (0.25 * ((pur1 - 1) / pur1) * ( pur5 / (1 + pur5)))
-    document.getElementById("purnell" + (k - 1)).innerHTML = pur6;
+    try {
+        let pur1 = document.getElementById("S" + (k - 1)).textContent;
+        pur1 = parseFloat(pur1);
+        console.log("pur1 is " + pur1);
+        let pur3 = document.getElementById("Kret" + k).textContent;
+        pur3 = parseFloat(pur3);
+        let pur4;
+        pur4 = document.getElementById("Kret" + (k - 1) ).textContent;
+        pur4 = parseFloat(pur4)
+        let pur5 = (pur3 + pur4) / 2
+        let pur6 = (0.25 * ((pur1 - 1) / pur1) * ( pur5 / (1 + pur5)))
+        document.getElementById("purnell" + (k - 1)).innerHTML = pur6.toFixed(4);
+    }
+    catch {
+        return;
+    }
 }
+   
