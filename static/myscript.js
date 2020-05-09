@@ -17,7 +17,7 @@ function change2(x1) {
     
     //Add the rows <td>
     var parameters = ["picnb", "pic", "C", "h", "Alpha"];
-    var results = ["TRr","Kret", "LOD","LOG","S","reso","N", "HEPT"];
+    var results = ["TRr","Kret", "LOD","LOQ","S","reso","N", "purnell", "HEPT"];
     for(i = 1; i <= y; i++){ console.log("adding row"+i+" to the results table...");
         let table1 = document.getElementById('tbody');
         let table2 = document.createElement("tr");
@@ -42,9 +42,12 @@ function change2(x1) {
 
         for(z1 = 0; z1 < results.length; z1++) {
             let newtd2 = document.createElement("td");
+            if (results[z1] == "reso") {
+                newtd2.className = "reso";
+            }
             newtd2.scope = "row";
-            newtd2.id = parameters[z1] + i;
-            newtd2.innerHTML = parameters[z1] + i;
+            newtd2.id = results[z1] + i;
+            newtd2.innerHTML = results[z1] + i;
             table2.appendChild(newtd2);
             
             }
@@ -73,17 +76,18 @@ function change2(x1) {
                 });    
             })
         
-        $('#S'+k).ready(function () {
-            $('#pic'+ k).change(function () {
+        $('#S'+k).ready(function () { 
+            $('#pic'+ k).change(function () { S(k),
                 $("#S"+ k).change(S(k));
                 });    
             })
         $('#Alpha'+k).ready(function () {
-            $('#pic'+k).change(resolution(k))
+            $('#pic'+k).change(resolution(k), S(k));
             }) 
+
         $('#N'+k).ready(function () {
             $('#Lg').change(function () {
-                HEPT(k); resolution(k);
+                HEPT(k); resolution(k); Purnell(k);
                 console.log("HEPT called from Lg change");
                 });    
             })
@@ -92,14 +96,29 @@ function change2(x1) {
         $("#pic" + k).change(function () {
             let picpic;
             picpic = 'pic' + k;
-            let paramTRr;
+            var paramTRr;
             paramTRr = document.getElementById(picpic);
-            $("#pic".id).change(TRr(paramTRr, k),Kret(picpic, k), N(k));
+            $("#pic".id).change(TRr(paramTRr, k),Kret(picpic, k), N(k), Purnell(k));
             })   
         }
     }
 
-function TRr(x, y) { console.log("in TRr()")
+$('#Lg').change( function () {
+    for (let z3 = 1; z3 <= x1.value; z3++) {
+        HEPT(z3)}})
+
+$('#TM').change( function () {
+    for (let z4 = 1; z4 <= x1.value; z4++) {
+        let x5 = document.getElementById('pic' + z4)
+        TRr(x5, z4)}})
+
+$('#Noise').change(function (){
+    for (let z5 = 1; z5 <= x1.value; z5++) {
+        limites(z5)
+        }
+    })
+
+function TRr(x, y) { console.log("in TRr()"+ x)
     if (x) {
         let Tm = document.getElementById("TM").value;
         let TRrx = x.value - Tm
@@ -109,13 +128,14 @@ function TRr(x, y) { console.log("in TRr()")
     else return console.log("Can't get element by id with:" + x);;
 }
 
-function Kret(TR, k) { console.log("in Kret")
+function Kret(TR, k) { 
+    console.log("in Kret")
     TR1 = document.getElementById(TR).value;
     console.log(TR1)
     Tm = document.getElementById("TM").value;
     console.log(Tm)
     Kret01 = (TR1 - Tm)/Tm;
-    document.getElementById("Kret"+k).innerHTML = Kret01.toFixed(3);
+    document.getElementById("Kret" + k).innerHTML = Kret01.toFixed(2);
     return console.log("Kret() return");
     }
 
@@ -123,7 +143,7 @@ function N(pic) {
     console.log("in N()");
     Alpha = document.getElementById("Alpha"+pic).value;
     TR1 = document.getElementById("pic"+pic).value;
-    N1 = (5.54 *((TR1 / Alpha)*(TR1 / Alpha)));
+    N1 = (5.54 *((TR1 / Alpha) * (TR1 / Alpha)));
     document.getElementById("N"+pic).innerHTML = N1.toFixed(2);
     return console.log("N1() return")
     }
@@ -131,11 +151,14 @@ function N(pic) {
 function S(pic) { console.log("in S()");
     if (document.getElementById("Kret"+(pic - 1)).textContent)
         {
-        Kret1 = document.getElementById("Kret"+(pic - 1)).textContent;
+        Kret1 = document.getElementById("Kret"+(pic - 1)).value;
         Kret1 = parseFloat(Kret1)
-        Kret2 = document.getElementById("Kret"+pic).textContent;
+        Kret2 = document.getElementById("Kret"+pic).value;
         Kret2 = parseFloat(Kret2)
         Sel = Kret2 / Kret1
+        if (Sel < 1) {
+            Sel = Kret1 / Kret2
+        }
         document.getElementById("S"+(pic - 1)).innerHTML = Sel.toFixed(2)
         return console.log("Sel: "+Sel.toFixed(2) + " , S() return")
         }
@@ -171,16 +194,12 @@ function resolution(x) {
     console.log("in resolution()");
     let NA1;
     NA1 = document.getElementById("Alpha" + (x - 1)).value;
-    console.log("NA1 = " + NA1);        
     let NA2;
     NA2 = document.getElementById("Alpha" + x).value;
-    console.log("NA2 = " + NA2);
     let NK1;
     NK1 = document.getElementById("pic" + (x - 1)).value;
-    console.log("NK1 = " + NK1);
     let NK2;
     NK2 = document.getElementById("pic" + x).value;
-    console.log("NK2 = " + NK2);
     NA2 = parseFloat(NA2)
     NA1 = parseFloat(NA1)
     let res;
@@ -188,18 +207,27 @@ function resolution(x) {
     console.log(NK2 - NK1);
     console.log(parseInt(NA2) + parseInt(NA1));
     console.log("res = " + res);
-    document.getElementById('reso' + (x - 1)).innerHTML= res.toFixed(4);
+    document.getElementById('reso' + (x - 1)).innerHTML = res.toFixed(4);
+    if (res.toFixed(4) < 1) {
+        document.getElementById('reso' + (x - 1)).className = "reso2";
+        }
+    else if (res.toFixed(4) < 1.4) {
+        document.getElementById('reso' + (x - 1)).className = "reso3";
+        }
+    else if (res.toFixed(4) < 1.6) {
+        document.getElementById('reso' + (x - 1)).className = "reso4";
+        }
+    else {
+        document.getElementById('reso' + (x - 1)).className = "reso5";
+        }
     return console.log("resolution() return");
 }
 
 function limites (k) {
-    console.log("in function limites()")
     let higth1;
     higth1 = document.getElementById("h" + k).value;
-    console.log("higth1 = " + higth1)
     let noise1;
     noise1 = document.getElementById("Noise").value;
-    console.log("noise1 = " + noise1)
     let rate;
     rate = higth1/noise1;
     let Ck;
@@ -210,4 +238,20 @@ function limites (k) {
     document.getElementById("LOD" + k).innerHTML = LOD0.toFixed(4);
     document.getElementById("LOQ" + k).innerHTML = LOQ0.toFixed(4);
     }
+}
+
+function Purnell (k) {
+    console.log("Purnell(selectivity, retention factor)" +(k +1))
+    let pur1 = document.getElementById("S" + (k - 1)).textContent;
+    pur1 = parseFloat(pur1)
+    console.log("pur1 is " + pur1)
+    let pur3 = document.getElementById("Kret" + k).textContent;
+    pur3 = parseFloat(pur3);
+    let pur4 = document.getElementById("Kret" + (k + 1) ).textContent;
+    pur4 = parseFloat(par4)
+    console.log("pur4 is " + pur4)  
+    let pur5 = (pur3 + pur4) / 2
+    console.log("pur5 is " + pur5)
+    let pur6 = (0.25 * ((pur1 - 1) / pur1) * ( pur5 / (1 + pur5)))
+    document.getElementById("purnell" + (k - 1)).innerHTML = pur6;
 }

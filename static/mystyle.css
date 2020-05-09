@@ -25,3 +25,19 @@ label {
     font-size: 80%;
     font-style: italic;
 }
+
+.reso2 {
+    background-color: rgba(248, 48, 48, 0.808);
+}
+
+.reso3 {
+    background-color: rgba(248, 172, 32, 0.74);
+}
+
+.reso4 {
+    background-color: rgba(59, 250, 59, 0.877);
+}
+
+.reso5 {
+    background-color: rgba(59, 237, 250, 0.877);
+}
