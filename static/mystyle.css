@@ -41,3 +41,9 @@ label {
 .reso5 {
     background-color: rgba(59, 237, 250, 0.877);
 }
+
+.units {
+    text-align: center;
+    font-size: 70%;
+    font-style: italic;
+}

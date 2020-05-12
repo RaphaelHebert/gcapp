@@ -27,15 +27,19 @@ function change2(x1) {
             let newtd = document.createElement("td");
             newtd.scope = "row";
             newtd.id = "th" + parameters[z0] + i;
+            newtd.style.padding = "0.10rem";
             table2.appendChild(newtd);
             if (z0 == 0){
                     newtd.innerHTML = i;
+                    newtd.style.textAlign = "center";
                 }
             else {
                 let newinput = document.createElement('input');  //create a <input> node
                 newinput.type = "float";
                 newinput.id = parameters[z0] + i;
                 newinput.size = 6;
+                newinput.style.length = "100%";
+                newinput.style.width = "100%";
                 newtd.appendChild(newinput);
                 }
             }
@@ -60,7 +64,7 @@ function change2(x1) {
                 picpic = 'pic' + k;
                 let paramTRr;
                 paramTRr = document.getElementById(picpic);
-                $("#pic".id).change(TRr(paramTRr, k),Kret(picpic, k), N(k));
+                $("#pic".id).change(TRr(paramTRr, k),Kret(picpic, k), N(k), resolution(k));
                 })
 
         $('#LOQ'+k).ready(function () {
@@ -72,9 +76,28 @@ function change2(x1) {
         //call N() when N change
         $('#N'+k).ready(function () {
             $("#Alpha" + k).change(function () {
-                $("#N"+ k).change(N(k), HEPT(k), resolution(k))
+                $("#N"+ k).change(N(k), HEPT(k), resolution(k), Purnell(k))
                 });    
             })
+
+        //call LOQ() & LOD ()when C change
+        $('#C'+k).ready(function () {
+                $("#C"+ k).change(LOD(k), LOQ(k))   
+            })
+        
+        //call LOQ() & LOD() when h change
+        $('#h'+k).ready(function () {
+            $("#h"+ k).change(LOD(k), LOQ(k))   
+        })
+
+        
+
+        //call resolution() when pic - 1  change
+        $('#pic'+(k -1)).ready(function () {
+            $("#pic"+ (k - 1)).change(resolution(k))   
+        })
+
+        
         
         $('#S'+k).ready(function () { 
             $('#pic'+ k).change(function () { S(k),
@@ -107,10 +130,18 @@ $('#Lg').change( function () {
     for (let z3 = 1; z3 <= x1.value; z3++) {
         HEPT(z3)}})
 
-$('#TM').change( function () {
+$('#TM').change(function () {
     for (let z4 = 1; z4 <= x1.value; z4++) {
-        let x5 = document.getElementById('pic' + z4)
-        TRr(x5, z4)}})
+        let x5 = document.getElementById('pic' + z4);
+        TRr(x5, z4);
+        let picpic1;
+        picpic1 = 'pic' + z4;
+        console.log("go for kret()"+picpic1 + "  "+z4)
+        Kret(picpic1, z4);
+        S(z4);
+        Purnell(z4);
+        }
+    })
 
 $('#Noise').change(function (){
     for (let z5 = 1; z5 <= x1.value; z5++) {
@@ -210,10 +241,7 @@ function resolution(x) {
     NA2 = parseFloat(NA2)
     NA1 = parseFloat(NA1)
     let res;
-    res=1.2 * ((NK2 - NK1)/(NA2 + NA1));
-    console.log(NK2 - NK1);
-    console.log(parseInt(NA2) + parseInt(NA1));
-    console.log("res = " + res);
+    res=1.176 * ((NK2 - NK1)/(NA2 + NA1));
     document.getElementById('reso' + (x - 1)).innerHTML = res.toFixed(4);
     if (res.toFixed(4) < 1) {
         document.getElementById('reso' + (x - 1)).className = "reso2";
@@ -252,15 +280,18 @@ function Purnell (k) {
     try {
         let pur1 = document.getElementById("S" + (k - 1)).textContent;
         pur1 = parseFloat(pur1);
-        console.log("pur1 is " + pur1);
         let pur3 = document.getElementById("Kret" + k).textContent;
         pur3 = parseFloat(pur3);
         let pur4;
         pur4 = document.getElementById("Kret" + (k - 1) ).textContent;
         pur4 = parseFloat(pur4)
+        let pur7;
+        pur7 = document.getElementById("reso" + (k-1) ).textContent;
+        pur7 = parseFloat(pur7)
         let pur5 = (pur3 + pur4) / 2
-        let pur6 = (0.25 * ((pur1 - 1) / pur1) * ( pur5 / (1 + pur5)))
-        document.getElementById("purnell" + (k - 1)).innerHTML = pur6.toFixed(4);
+        let pur6 = pur7/ ((0.25 * ((pur1 - 1) / pur1) * ( pur5 / (1 + pur5))))
+        pur6 = pur6 * pur6;
+        document.getElementById("purnell" + (k - 1)).innerHTML = pur6.toFixed(0);
     }
     catch {
         return;

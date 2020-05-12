@@ -33,11 +33,7 @@
                 </div>
                 <div class="col-md-2">
                   <label for="pics">Number of pics</label>
-                  <input type="number" class="form-control" id="pics" name="pics" onchange="change2(this)">
-                </div>
-                <div class="col-md-2">
-                  <label for="Flow">Flow rate (ml/min)</label>
-                  <input type="float" class="form-control" placeholder="Flow" id ="Débit">
+                  <input type="number" class="form-control" id="pics" name="pics" onchange="change2(this)" autofocus>
                 </div>
                 <div class="col-md-2">
                   <label for="Lg">Column length (mm)</label>
@@ -55,37 +51,39 @@
                 <p><b>h</b>: hight of the pic</p>
                 <p><b>TRr</b>: reduced retention time</p>
                 <p><b><font face="Symbol, serif">&delta;</font></b>: pic width at mid-hight</p>
-                <p><b>K'</b>: retention factor</p>
               </div>
               <div class="col-md-3 terminology" >
                 <p><b>LOD</b>: limit of detection</p>
                 <p><b>LOQ</b>: limit of quantification</p>
                 <p><b>N</b>: number of plates</p>
-                <p><b><font face="Symbol, serif">&alpha;</font></b>: selectivity</p>
               </div>
               <div class="col-md-3 terminology">
                 <p><b>R</b>: resolution</p>
                 <p><b>Tr</b>: retention time</p>
                 <p><b>C</b>: concentration of injected compound</p>
               </div>
+              <div class="col-md-3 terminology">
+                <p><b>K'</b>: retention factor</p>
+                <p><b><font face="Symbol, serif">&alpha;</font></b>: selectivity</p>
+              </div>
               </div>
             <table class="table table-light table-striped">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col" style="color: rgb(76, 102, 252);">n°</th>
-                    <th scope="col" style="color: rgb(76, 102, 252);">TR (mins)</th>
-                    <th scope="col" style="color: rgb(76, 102, 252);">C (mg/L)</th>
-                    <th scope="col" style="color: rgb(76, 102, 252);">h (mm)</th>
-                    <th scope="col" style="color: rgb(76, 102, 252);"><font face="Symbol, serif">&delta;</font> (mm)</th>
-                    <th scope="col" style="color: rgb(76, 102, 252);">TRr (mins)</th>
-                    <th scope="col" style="color: rgb(76, 102, 252);">K'</th>
-                    <th scope="col" style="color: rgb(76, 102, 252);">LOD (mg/L)</th>
-                    <th scope="col" style="color: rgb(76, 102, 252);">LOQ (mg/L)</th>
-                    <th scope="col" style="color: rgb(76, 102, 252);"><font face="Symbol, serif">&alpha;</font></th>
-                    <th scope="col" style="color: rgb(76, 102, 252);">R</th>
-                    <th scope="col" style="color: rgb(76, 102, 252);">N</th>                   
-                    <th scope="col" style="color: rgb(76, 102, 252);">H(purnell)</th>
-                    <th scope="col" style="color: rgb(76, 102, 252);">HEPT</th>
+                    <th scope="col" style="color: rgb(76, 102, 252);">n°<p class = "units"></p></th>
+                    <th scope="col" style="color: rgb(76, 102, 252);">TR<p class = "units"> (mins)</p></th>
+                    <th scope="col" style="color: rgb(76, 102, 252);">C <p class = "units">(mg/L)</p></th>
+                    <th scope="col" style="color: rgb(76, 102, 252);">h <p class = "units">(mm)</p></th>
+                    <th scope="col" style="color: rgb(76, 102, 252);"><font face="Symbol, serif">&delta;</font><p class = "units">(mm)</p></th>
+                    <th scope="col" style="color: rgb(76, 102, 252);">TRr<p class = "units">(mins)</p></th>
+                    <th scope="col" style="color: rgb(76, 102, 252);">K'<p class = "units"></p></th>
+                    <th scope="col" style="color: rgb(76, 102, 252);">LOD<p class = "units">(mg/L)</p></th>
+                    <th scope="col" style="color: rgb(76, 102, 252);">LOQ<p class = "units">(mg/L)</p></th>
+                    <th scope="col" style="color: rgb(76, 102, 252);"><font face="Symbol, serif">&alpha;</font><p class = "units"></p></th>
+                    <th scope="col" style="color: rgb(76, 102, 252);">R<p class = "units"></p></th>
+                    <th scope="col" style="color: rgb(76, 102, 252);">N<p class = "units"></p></th>                   
+                    <th scope="col" style="color: rgb(76, 102, 252);">N<p class = "units">(purnell)</p></th>
+                    <th scope="col" style="color: rgb(76, 102, 252);">HEPT<p class = "units"></p></th>
                   </tr>
                 </thead>
                 <tbody id ="tbody">
