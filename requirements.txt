@@ -24,7 +24,7 @@ Flask-WTF==0.14.3
 future==0.15.2
 GDAL==2.4.2
 gestures==0.2.2
-httplib2==0.9.2
+httplib2==0.18.0
 idna==2.6
 ipython-genutils==0.2.0
 is-disposable-email==1.0.0
