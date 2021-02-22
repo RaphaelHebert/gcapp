@@ -1,2 +1,4 @@
 # gcapp
-developing a webapp for GC (gas chromatograhy)
+
+## Introduction
+Devellopped an app for gaz chromatography parameters to practice JS and gaz chromato calculus
